@@ -1,40 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
-## Getting Started
+# 📸 S3 Gallery App
 
-First, run the development server:
+The **S3 Gallery App** is a full-stack application for uploading, storing, and viewing images in an **S3-compatible storage service** (like AWS S3 or MinIO).
+It provides a simple UI to upload images/videos, list them, downlaod images/videos,edit image/video titles, preview images/videos, filter them and view them as a gallery.
+
+This app is useful for projects where you want a self-hosted image gallery backed by cloud or local object storage.
+
+
+## 🚀 Features
+
+* Upload images directly to S3 (AWS or MinIO).
+* View uploaded images in a gallery format.
+* Delete images from storage.
+* Configurable for AWS S3 or local MinIO.
+* Environment variable support for credentials and storage settings.
+
+
+## 🛠️ Tech Stack
+
+* **Frontend:** Next.js (pages router)
+* **Backend:** Next.js api 
+* **Storage:** AWS S3 / MinIO
+* **Database:** (Optional, if you added one)
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/s3-gallery-app.git
+cd s3-gallery-app
+```
+
+---
+
+### 2. Setup Environment Variables
+
+
+```env
+
+# AWS / MinIO Credentials
+
+AWS_ACCESS_KEY_ID=minioadmin (based on your Minio/aws setup)
+AWS_SECRET_ACCESS_KEY=minioadmin
+AWS_S3_ENDPOINT=http://localhost:9000
+AWS_S3_REGION=us-east-1
+AWS_S3_BUCKET=my-s3-gallery
+
+```
+
+### 3. Run MinIO (Local S3 Alternative)
+
+If you don’t want to use AWS S3, you can run **MinIO** locally in Docker:
+
+```bash
+docker run -p 9000:9000 -p 9001:9001 \
+  -e "MINIO_ROOT_USER=minioadmin" \
+  -e "MINIO_ROOT_PASSWORD=minioadmin" \
+  minio/minio server /data --console-address ":9001"
+```
+
+* Dashboard: [http://localhost:9001](http://localhost:9001)
+* Create a bucket named **`my-s3-gallery`**
+
+---
+
+### 5. Start the App
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Now open **[http://localhost:5173](http://localhost:5173)** (or whichever port your frontend runs on).
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 📂 Project Structure
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+updating soon...
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧪 Testing the Setup
 
-## Learn More
+1. Upload an image → Check MinIO / AWS S3 bucket.
+2. Refresh frontend → See your uploaded image in the gallery.
+3. Delete image → Confirm deletion in storage.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 🤝 Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Fork the repo
+2. Create your feature branch: `git checkout -b feature/my-feature`
+3. Commit changes: `git commit -m 'Add my feature'`
+4. Push to branch: `git push origin feature/my-feature`
+5. Open a Pull Request
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+---
